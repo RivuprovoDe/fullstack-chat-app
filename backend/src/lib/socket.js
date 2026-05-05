@@ -7,15 +7,10 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:5173"],
+    origin: ["http://localhost:5173", "https://fullstack-chat-app-4-gq2w.onrender.com"],
   },
 });
-app.use(
-  cors({
-    origin: ["http://localhost:5173", "https://fullstack-chat-app-4-gq2w.onrender.com"],
-    credentials: true,
-  })
-);
+
 export function getReceiverSocketId(userId) {
   return userSocketMap[userId];
 }
