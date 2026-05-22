@@ -9,12 +9,16 @@ const MessageInput = () => {
   const fileInputRef = useRef(null);
   const { sendMessage } = useChatStore();
 
-  const handleImageChange = (e) => {
+const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (!file.type.startsWith("image/")) {
       toast.error("Please select an image file");
       return;
     }
++   if (file.size > 7 * 1024 * 1024) {
++     toast.error("Image must be under 7MB");
++     return;
++   }
 
     const reader = new FileReader();
     reader.onloadend = () => {
@@ -22,7 +26,6 @@ const MessageInput = () => {
     };
     reader.readAsDataURL(file);
   };
-
   const removeImage = () => {
     setImagePreview(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
