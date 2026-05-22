@@ -15,10 +15,10 @@ const handleImageChange = (e) => {
       toast.error("Please select an image file");
       return;
     }
-+   if (file.size > 7 * 1024 * 1024) {
-+     toast.error("Image must be under 7MB");
-+     return;
-+   }
+ if (file.size > 7 * 1024 * 1024) {
+    toast.error("Image must be under 7MB");
+    return;
+  }
 
     const reader = new FileReader();
     reader.onloadend = () => {
