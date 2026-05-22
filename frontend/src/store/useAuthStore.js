@@ -21,8 +21,6 @@ checkAuth: async () => {
       set({ authUser: res.data });
       get().connectSocket();
     } catch (error) {
--     console.log("Error in checkAuth:", error);
-+     // 401 is expected when not logged in — no need to log
       set({ authUser: null });
     } finally {
       set({ isCheckingAuth: false });
